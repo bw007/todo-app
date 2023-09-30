@@ -195,6 +195,17 @@ select {
 }
 
 /* ITEM */
+.todo-item__icons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.todo-item__icons img {
+  cursor: pointer;
+}
+
 .todo-item__headline {
   color: var(--text-dark);
   font-size: 1.6rem;
