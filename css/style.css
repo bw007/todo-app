@@ -1,0 +1,249 @@
+@font-face {
+  font-family: "Roboto Regular";
+  src: url("Roboto-Regular.woff2") format("woff2"),
+    url("Roboto-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto Bold";
+  src: url("Roboto-Bold.woff2") format("woff2"),
+    url("Roboto-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --text-dark: #000;
+  --text-light: #FFF;
+  --bg-red: #F00;
+  --bg-green: #7ED369;
+  --bg-body: whitesmoke;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: "Roboto Regular", sans-serif;
+  background-color: var(--bg-body);
+}
+
+/* BUTTON */
+.btn {
+  background-color: var(--bg-green);
+  transition: background-color 0.15s linear;
+  display: block;
+  margin: auto;
+  border: 0;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #66b852;
+}
+
+/* INPUTS */
+.input, .desc {
+  border-radius: 15px;
+  border: 1px solid #7A7A7A;
+  background: #FFF;
+  padding: 10px 15px;
+  outline: 0;
+  display: block;
+  width: 100%;
+  color: var(--text-dark);
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+select {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  background-color: #FFF;
+  outline: 0;
+}
+
+/* WRAPPER */
+.todo__container {
+  width: 100%;
+  max-width: 414px;
+  min-height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #FFF;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+/* MODAL */
+.modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.68);
+  padding: 90px 21px;
+  display: none;
+}
+.modal--active {
+  display: block;
+}
+.modal__main {
+  background-color: #FFF;
+  width: 100%;
+  padding-bottom: 35px;
+}
+
+.modal__close {
+  padding: 14px 14px 0;
+  width: 100%;
+  text-align: end;
+  cursor: pointer;
+}
+
+.modal__title {
+  color: var(--text-dark);
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.modal__main-inner {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal__btn {
+  padding: 10px 55px;
+  border-radius: 50px;
+  color: var(--text-dark);
+  font-size: 1.2rem;
+}
+
+/* HEADER */
+.todo__heading {
+  width: 100%;
+  padding: 26px 21px 0;
+  border-bottom: 1px solid #000;
+}
+
+.todo__title {
+  color: var(--text-dark);
+  font-size: 2.4rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.todo__filter {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 7px;
+}
+
+.todo__filter li {
+  display: inline-block;
+  text-align: center;
+  width: 33.3%;
+  padding: 8px 0;
+  background: var(--bg-red);
+  color: var(--text-light);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ITEMS */
+.todo__items {
+  padding: 35px 21px 35px;
+}
+
+.todo__items-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+
+}
+
+.todo__item {
+  display: block;
+  background: url("../img/checked-symbol.svg"), #9FE3E8 1.378px 1.071px / 107.671% 107.671%;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 65px;
+  padding: 10px 14px;
+}
+
+/* ITEM */
+.todo-item__headline {
+  color: var(--text-dark);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.todo-item__text {
+  color: var(--text-dark);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-top: 8px;
+}
+
+.todo-item__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.todo-item__date, .todo-item__user {
+  color: var(--text-dark);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* CREATE BUTTON */
+.todo__create-btn {
+  width: 62px;
+  height: 62px;
+  margin-top: 35px;
+  color: var(--text-light);
+  font-size: 3.6rem;
+  font-weight: 700;
+  border-radius: 100%;
+}
+
+/* ANIMATION */
+.popup {
+ animation: ans 0.45s ease-out;
+}
+
+
+
+@keyframes ans {
+  from {
+    transform: translateX(-400px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

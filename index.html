@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo | List</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="todo__container">
+      <div class="modal">
+        <form onsubmit="create(event)" class="modal__main">
+          <div class="modal__close">
+            <img src="./img/remove-symbol.svg" alt="">
+          </div>
+          <h5 class="modal__title">Yangi topshiriq</h5>
+          <div class="modal__main-inner">
+            <input class="input" required type="text" name="title" placeholder="Topshiriq sarlavhasi">
+            <textarea class="desc" required name="text" type="text" placeholder="Topshiriq matni"></textarea>
+            <input class="input" type="date" required name="date" placeholder="Ohirgi muddat">
+            <input class="input" type="text" required name="user" placeholder="Guruh a’zosi">
+          </div>
+          <button class="modal__btn btn">Qo’shish</button>
+        </form>
+      </div>
+
+      <header class="todo__heading">
+        <h2 class="todo__title">ToDolist</h2>
+        <ul class="todo__filter">
+          <li data-all="all">Barchasi</li>
+          <li data-done="done">Bajarilganlar</li>
+          <li data-failed="failed"="">Bajarilmaganlar</li>
+        </ul>
+      </header>
+  
+      <main class="todo__items">
+        <div class="todo__items-inner"></div>
+        <button class="todo__create-btn btn">+</button>
+      </main>
+    </div>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>
