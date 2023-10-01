@@ -109,8 +109,8 @@ function render(items, len) {
     todoItem.innerHTML += `
       <section class="todo__item ${lenSet[id] ? "un-popup" : ""} ${done ? "todo__item--done" : ""} ${len == i ? "popup" : ""}">
         <div class="todo-item__icons">
-          <img onclick="edit(event)" class="todo-item__edit" src="../img/pencil.svg" />
-          <img onclick="remove(event)" class="todo-item__remove" data-${id}="${id}" src="../img/remove.svg" />
+          <img onclick="edit(event)" class="todo-item__edit" src="img/pencil.svg" />
+          <img onclick="remove(event)" class="todo-item__remove" data-${id}="${id}" src="img/remove.svg" />
         </div>
         <h3 class="todo-item__headline">${title}</h3>
         <p class="todo-item__text">
