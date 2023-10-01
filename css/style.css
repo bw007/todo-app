@@ -18,9 +18,9 @@
 
 :root {
   --text-dark: #000;
-  --text-light: #FFF;
-  --bg-red: #F00;
-  --bg-green: #7ED369;
+  --text-light: #fff;
+  --bg-red: #f00;
+  --bg-green: #7ed369;
   --bg-body: whitesmoke;
 }
 
@@ -53,10 +53,11 @@ body {
 }
 
 /* INPUTS */
-.input, .desc {
+.input,
+.desc {
   border-radius: 15px;
-  border: 1px solid #7A7A7A;
-  background: #FFF;
+  border: 1px solid #7a7a7a;
+  background: #fff;
   padding: 10px 15px;
   outline: 0;
   display: block;
@@ -71,7 +72,7 @@ select {
   width: 100%;
   padding: 10px 15px;
   border-radius: 15px;
-  background-color: #FFF;
+  background-color: #fff;
   outline: 0;
 }
 
@@ -82,7 +83,7 @@ select {
   min-height: 500px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #FFF;
+  background-color: #fff;
   margin-top: 20px;
   margin-bottom: 30px;
   position: relative;
@@ -104,7 +105,7 @@ select {
   display: block;
 }
 .modal__main {
-  background-color: #FFF;
+  background-color: #fff;
   width: 100%;
   padding-bottom: 35px;
 }
@@ -129,6 +130,15 @@ select {
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+label {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+label span {
+  margin-left: 10px;
+  font-size: 1.5rem;
 }
 
 .modal__btn {
@@ -165,8 +175,6 @@ select {
   text-align: center;
   width: 33.3%;
   padding: 8px 0;
-  background: var(--bg-red);
-  color: var(--text-light);
   font-size: 1.2rem;
   font-weight: 700;
   cursor: pointer;
@@ -182,24 +190,33 @@ select {
   flex-direction: column;
   gap: 12px;
   overflow: hidden;
-
 }
 
 .todo__item {
   display: block;
-  background: url("../img/checked-symbol.svg"), #9FE3E8 1.378px 1.071px / 107.671% 107.671%;
+  padding: 10px 14px;
+  background: #9fe3e8;
+}
+
+.todo__item--done {
+  background: url("../img/checked-symbol.svg"),
+    #F4A4A9 1.378px 1.071px / 107.671% 107.671%;
   background-repeat: no-repeat;
   background-position: right bottom;
   background-size: 65px;
-  padding: 10px 14px;
 }
 
 /* ITEM */
 .todo-item__icons {
   display: flex;
+  opacity: 0;
   align-items: center;
   justify-content: flex-end;
   gap: 8px;
+  transition: opacity 0.15s ease-out;
+}
+.todo__item:hover .todo-item__icons {
+  opacity: 1;
 }
 
 .todo-item__icons img {
@@ -226,7 +243,8 @@ select {
   margin-top: 12px;
 }
 
-.todo-item__date, .todo-item__user {
+.todo-item__date,
+.todo-item__user {
   color: var(--text-dark);
   font-size: 1.4rem;
   font-weight: 700;
@@ -245,10 +263,20 @@ select {
 
 /* ANIMATION */
 .popup {
- animation: ans 0.45s ease-out;
+  animation: ans 0.35s ease-out;
+}
+.un-popup {
+  animation: unp 0.35s linear;
 }
 
-
+@keyframes unp {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-400px);
+  }
+}
 
 @keyframes ans {
   from {

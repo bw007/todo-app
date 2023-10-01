@@ -25,10 +25,14 @@ modalClose.onclick = () => {
 
 let items = [];
 
-// Check localStorage ************
+// localStorage ************
 if (localStorage.getItem("items")) {
   items = [...JSON.parse(localStorage.getItem("items"))];
   render(items);
+}
+
+const setLocalMemory = (arr) => {
+  localStorage.setItem("items", JSON.stringify(arr));
 }
 // *******************************
 
@@ -42,28 +46,50 @@ const create = (e) => {
   data.forEach((value, name) => {
     item[name] = value;
   });
-  
-  items.push({...item, done: false, failed: false});
-  console.log(items);
-  localStorage.setItem("items", JSON.stringify(items));
+
+  items.push({ ...item, id: Date.now()});
+  setLocalMemory(items);
   render(items, items.length - 1);
 };
 
 // FILTER ************************
 let keywords = ["all", "done", "failed"];
-filterBtns.forEach((filterBtn, i) => {
-  filterBtn.onclick = (e) => {
-    filter(e.target.dataset[keywords[i]])
+
+const bgBtn = (i) => {
+  filterBtns.forEach(btn => {
+    btn.style.color = "black";
+    btn.style.background = "white";
+  });
+}
+
+filterBtns.forEach((btn, i) => {
+  if (i == 0) {
+    filterBtns[i].style.color = "white";
+    filterBtns[i].style.background = "red";
+  }
+  btn.onclick = (e) => {
+    filter(e.target.dataset[keywords[i]]);
+    bgBtn(i);
+    filterBtns[i].style.color = "white";
+    filterBtns[i].style.background = "red";
   };
 });
 
 function filter(keywrd) {
   if (localStorage.getItem("items")) {
-    const fl = items.filter((item) => item[keywrd] === true);
-    if (keywrd == "all") {
-      render(items);
-    } else {
-      render(fl)
+    const fail = items.filter((item) => item["done"] !== "on");
+    const done = items.filter((item) => item["done"] === "on");
+    
+    switch (keywrd) {
+      case "done":
+        render(done);
+        break;
+      case "failed":
+        render(fail);
+        break;
+      default:
+        render(items);
+        break;
     }
   }
 }
@@ -71,16 +97,19 @@ function filter(keywrd) {
 
 // Rendering UI *****************
 function render(items, len) {
+  let lenSet = "";
+  if (typeof len == "object") {
+    lenSet = {...len}
+  }
   todoItem.innerHTML = "";
-
   items.forEach((item, i) => {
-    const { title, text, date, user } = item;
+    const { title, text, date, user, done, id } = item;
 
     todoItem.innerHTML += `
-      <section class="todo__item ${len == i ? "popup" : ""}">
+      <section class="todo__item ${lenSet[id] ? "un-popup" : ""} ${done ? "todo__item--done" : ""} ${len == i ? "popup" : ""}">
         <div class="todo-item__icons">
-          <img class="todo-item__edit" src="../img/pencil.svg" />
-          <img class="todo-item__remove" src="../img/remove.svg" />
+          <img onclick="edit(event)" class="todo-item__edit" src="../img/pencil.svg" />
+          <img onclick="remove(event)" class="todo-item__remove" data-${id}="${id}" src="../img/remove.svg" />
         </div>
         <h3 class="todo-item__headline">${title}</h3>
         <p class="todo-item__text">
@@ -94,4 +123,19 @@ function render(items, len) {
     `;
   });
 }
-// *********************
+// *******************************
+
+// EDIT ITEM *********************
+
+// *******************************
+
+// DELETE ITEM *******************
+const remove = (e) => {
+  render(items, e.target.dataset);
+  items = items.filter(fl => (fl.id != e.target.dataset[fl.id]));
+  setLocalMemory(items);
+  setTimeout(() => {
+    render(items, );
+  }, 350);
+};
+// *******************************
